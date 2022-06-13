@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+		
+<http use-expressions="true">
+  <intercept-url pattern="/**" access="ROLE_USER" />
+  <session-management invalid-session-url="">
+  	<concurrency-control max-sessions="1" expired-url="http://192.168.0.22:3000/"/>
+  </session-management>
+</http>
+
+<authentication-manager>
+  <authentication-provider>
+    <user-service>
+      <user name="admin" password="{noop}admin" authorities="ROLE_ADMIN"/>
+      <user name="user" password="{noop}user" authorities="ROLE_USER"/>
+    </user-service>
+  </authentication-provider>
+</authentication-manager>
+
+</beans>
