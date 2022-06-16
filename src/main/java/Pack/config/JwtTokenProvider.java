@@ -25,7 +25,7 @@ public class JwtTokenProvider {
 	private String secretKey = "poscoict";
 
     // 토큰 유효시간 30분
-    private long tokenValidTime = 30 * 60 * 1000L;
+    private long tokenValidTime = 12 * 60 * 60 * 1000L;
     
     private final UserDetailsService userDetailsService;
 
@@ -39,6 +39,8 @@ public class JwtTokenProvider {
     public String createToken(String userPk, UserVo userVo) {
         Claims claims = Jwts.claims().setSubject(userPk); // JWT payload 에 저장되는 정보단위
         claims.put("info", userVo); // 정보는 key / value 쌍으로 저장된다.
+        System.out.println("토큰이다~");
+        System.out.println(claims);
         Date now = new Date();
         return Jwts.builder()
                 .setClaims(claims) // 정보 저장

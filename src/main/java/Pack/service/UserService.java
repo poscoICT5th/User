@@ -31,12 +31,14 @@ public class UserService implements UserDetailsService{
 	
 	@Override
     public UserVo loadUserByUsername(String id)throws UsernameNotFoundException {
+		System.out.println(id);
     	System.out.println("로그인 서비스 들어옴");
         //여기서 받은 유저 패스워드와 비교하여 로그인 인증
         UserVo userVo = userMapper.getUserAccount(id);
         if (userVo == null){
             throw new UsernameNotFoundException("User not authorized.");
         }
+        System.out.println(userVo);
         return userVo;
     }
 }
