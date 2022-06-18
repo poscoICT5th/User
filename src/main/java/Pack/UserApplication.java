@@ -19,7 +19,7 @@ public class UserApplication extends SpringBootServletInitializer{
 	// war deploy
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		return builder.sources(Application.class);
+		return builder.sources(UserApplication.class);
 	}
 
 	public static void main(String[] args) {
